@@ -4,6 +4,8 @@ import platform
 import socket
 import sys
 
+
+
 machineStr = 'Machine'
 hostnameStr = 'Hostname'
 processorStr = 'Processor'
