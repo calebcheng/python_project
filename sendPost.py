@@ -3,11 +3,7 @@ import urllib2
 import platform
 import socket
 import sys
-import time;
-
-
-
-
+import time
 
 hostnameStr = 'Hostname'
 processorStr = 'Processor'
