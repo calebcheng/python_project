@@ -3,11 +3,17 @@ import urllib2
 import platform
 import socket
 import sys
+import time;
 
-machineStr = 'Machine'
+
+
+
 hostnameStr = 'Hostname'
 processorStr = 'Processor'
 ipStr = 'IP'
+dateStr = 'CreationDate'
+consoleAddressStr = "ConsoleAddress"
+
 consoleAddress = sys.argv[1]
 print consoleAddress
 
@@ -16,12 +22,13 @@ s.connect(("9.9.9.9", 80))
 ip = s.getsockname()[0]
 s.close()
 
+localtime = time.asctime( time.localtime(time.time()) )
 hostname = socket.gethostname()
-machine = platform.machine()
+
 processor = platform.processor()
 info = {
         hostnameStr: hostname,
-        machineStr: machine,
+        dateStr: localtime,
         processorStr: processor,
         ipStr: ip
         }
@@ -40,9 +47,10 @@ response = urllib2.urlopen(req, json.dumps(info))
 
 
 
-file = open(hostname+'.properties', 'w')
+file = open(ip +'.properties', 'w')
+file.write(consoleAddressStr + '=' + consoleAddress + '\n')
 file.write(hostnameStr + '=' + hostname + '\n')
-file.write(machineStr + '=' + machine + '\n')
+file.write(dateStr + '=' + localtime + '\n')
 file.write(processorStr + '=' + processor + '\n')
 file.write(ipStr + '=' + ip + '\n')
 file.close()
