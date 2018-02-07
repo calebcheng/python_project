@@ -20,6 +20,7 @@ ip = s.getsockname()[0]
 s.close()
 
 localtime = time.asctime( time.localtime(time.time()) )
+localtime = localtime.replace("  ", " ")
 hostname = socket.gethostname()
 
 processor = platform.processor()
